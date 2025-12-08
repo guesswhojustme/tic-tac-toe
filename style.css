@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.grid-container {
+    background-color: #D9D9D9;
+    margin-top: 150px;
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-radius: 16px;
+    filter: drop-shadow(0px 4px 4px #C4C4C4);
+}
+
+.div{
+    border: 1px #a3a3a3 solid;
+    border-radius: 16px;
+}
+

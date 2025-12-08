@@ -1,8 +1,11 @@
+const divsBtnDiv = document.querySelector(".grid-container");
+
 const array = [
     ['o','o','x'],
-    ['o','o','x'],
-    ['x','x','o']
+    ['o','x','x'],
+    ['o','x','o']
 ]
+
 
 let turns = 0;
 let xWinner = false;
@@ -21,6 +24,14 @@ const counter = (function () {
     }
 })();
 
+
+function displayArray(array){
+    for(i = 0; i < array.length; i++){
+        console.log(array[i]);
+    }
+}
+
+displayArray(array);
 
 const arrayDirections = {
     diagonal: [
@@ -58,13 +69,6 @@ function checkHorizontal(array){
         if(counter.getMarkerXVal() !== array.horizontal[i].length || counter.getMarkerOVal() !== array.horizontal[i].length){
             counter.resetCounter();
         }
-        console.log(counter.getMarkerOVal());
-        console.log(counter.getMarkerXVal());
-    }
-    if(xWinner){
-        console.log("X won the Game");
-    }else if(oWinner){
-        console.log("O won the Game");
     }
 };
 
@@ -87,13 +91,6 @@ function checkDiagonal(array){
         if(counter.getMarkerXVal() !== array.diagonal[i].length || counter.getMarkerOVal() !== array.diagonal[i].length){
             counter.resetCounter();
         }
-        console.log(counter.getMarkerOVal());
-        console.log(counter.getMarkerXVal());
-    }
-    if(xWinner){
-        console.log("X won the Game");
-    }else if(oWinner){
-        console.log("O won the Game");
     }
 };
 
@@ -116,17 +113,19 @@ function checkVertical(array){
         if(counter.getMarkerXVal() !== array.vertical[i].length || counter.getMarkerOVal() !== array.vertical[i].length){
             counter.resetCounter();
         }
-        console.log(counter.getMarkerOVal());
-        console.log(counter.getMarkerXVal());
-    }
-    if(xWinner){
-        console.log("X won the Game");
-    }else if(oWinner){
-        console.log("O won the Game");
     }
 };
 
+function checkArray(){
+    checkDiagonal(arrayDirections);
+    checkVertical(arrayDirections);
+    checkHorizontal(arrayDirections);
+};
 
-checkDiagonal(arrayDirections);
-checkVertical(arrayDirections);
-checkHorizontal(arrayDirections);
+checkArray();
+
+if(xWinner){
+    console.log("X won the game");
+}else if (oWinner){
+    console.log("O won the game");
+}
