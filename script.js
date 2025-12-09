@@ -1,29 +1,10 @@
 const divsBtnDiv = document.querySelector(".grid-container");
 
 const array = [
-    ['o','o','x'],
-    ['o','x','x'],
-    ['o','x','o']
+    ['','',''],
+    ['','',''],
+    ['','','']
 ]
-
-
-let turns = 0;
-let xWinner = false;
-let oWinner = false;
-
-const counter = (function () {
-    let oMarkerCounter = 0;
-    let xMarkerCounter = 0;
-
-    return {
-        xIncreament() {xMarkerCounter++},
-        oIncreament() {oMarkerCounter++},
-        resetCounter() {xMarkerCounter = 0; oMarkerCounter = 0;},
-        getMarkerOVal() { return oMarkerCounter},
-        getMarkerXVal() { return xMarkerCounter}
-    }
-})();
-
 
 function displayArray(array){
     for(i = 0; i < array.length; i++){
@@ -31,101 +12,161 @@ function displayArray(array){
     }
 }
 
+let marker = "";
+let turns = 0;
+let xWinner = false;
+let oWinner = false;
+
+function turn(){
+    turns++;
+	if(turns % 2 !==0){
+	marker = 'x';
+	}else if(turns % 2 == 0){
+	marker = 'o';
+	}
+}
+
 displayArray(array);
 
-const arrayDirections = {
-    diagonal: [
-        [array[0][0], array[1][1], array[2][2]],
-        [array[0][2], array[1][1], array[2][0]]
-    ],
-    horizontal: [
-        [array[0][0], array[0][1], array[0][2]],
-        [array[1][0], array[1][1], array[1][2]],
-        [array[2][0], array[2][1], array[2][2]],
-    ],
-    vertical: [
-        [array[0][0], array[1][0], array[2][0]],
-        [array[0][1], array[1][1], array[2][1]],
-        [array[0][2], array[1][2], array[2][2]]
-    ]
-};
+function checkDiagonal(array){
+    if(array[0][0] == 'x' && array[1][1] == 'x' && array[2][2] == 'x' 
+        ||
+       array[0][2] == 'x' && array[1][1] == 'x' && array[2][0] == 'x' 
+      ){
+        xWinner = true;
+        console.log("checkDiagonal Function was satisfied");
+    }else if(
+        array[0][0] == 'o' && array[1][1] == 'o' && array[2][2] == 'o' 
+        ||
+        array[0][2] == 'o' && array[1][1] == 'o' && array[2][0] == 'o'
+    ){
+        oWinner = true;
+        console.log("checkDiagonal Function was satisfied");
+    }
+}
 
 function checkHorizontal(array){
-    for(i = 0; i < array.horizontal.length; i++){
-        for(j = 0; j < array.horizontal[i].length; j++){
-            if(array.horizontal[i][j] == 'x'){
-                counter.xIncreament();
-                if(counter.getMarkerXVal() == array.horizontal[i].length){
-                    xWinner = true;
-                }
-            }
-            if(array.horizontal[i][j] == 'o'){
-                counter.oIncreament();
-                if(counter.getMarkerOVal() == array.horizontal[i].length){
-                    oWinner = true;
-                }
-            }
-        }
-        if(counter.getMarkerXVal() !== array.horizontal[i].length || counter.getMarkerOVal() !== array.horizontal[i].length){
-            counter.resetCounter();
-        }
+    if(array[0][0] == 'x' && array[0][1] == 'x' && array[0][2] == 'x'
+        ||
+       array[1][0] == 'x' && array[1][1] == 'x' && array[1][2] == 'x'
+        ||
+       array[1][0] == 'x' && array[2][1] == 'x' && array[2][2] == 'x'
+    ){
+        xWinner = true;
+        console.log("checkHorizontal Function was satisfied");
+    }else if(array[0][0] == 'o' && array[0][1] == 'o' && array[0][2] == 'o'
+        ||
+       array[1][0] == 'o' && array[1][1] == 'o' && array[1][2] == 'o'
+        ||
+       array[1][0] == 'o' && array[2][1] == 'x' && array[2][2] == 'o'
+    ){
+        oWinner = true;
+        console.log("checkHorizontal Function was satisfied");
     }
-};
-
-function checkDiagonal(array){
-    for(i = 0; i < array.diagonal.length; i++){
-        for(j = 0; j < array.diagonal[i].length; j++){
-            if(array.diagonal[i][j] == 'x'){
-                counter.xIncreament();
-                if(counter.getMarkerXVal()== array.diagonal[i].length){
-                    xWinner = true;
-                }
-            }
-            if(array.diagonal[i][j] == 'o'){
-                counter.oIncreament();
-                if(counter.getMarkerOVal() == array.diagonal[i].length){
-                    oWinner = true;
-                }
-            }
-        }
-        if(counter.getMarkerXVal() !== array.diagonal[i].length || counter.getMarkerOVal() !== array.diagonal[i].length){
-            counter.resetCounter();
-        }
-    }
-};
+}
 
 function checkVertical(array){
-    for(i = 0; i < array.vertical.length; i++){
-        for(j = 0; j < array.vertical[i].length; j++){
-            if(array.vertical[i][j] == 'x'){
-                counter.xIncreament();
-                if(counter.getMarkerXVal() == array.vertical[i].length){
-                    xWinner = true;
-                }
-            }
-            if(array.vertical[i][j] == 'o'){
-                counter.oIncreament();
-                if(counter.getMarkerOVal() == array.vertical[i].length){
-                    oWinner = true;
-                }
-            }
-        }
-        if(counter.getMarkerXVal() !== array.vertical[i].length || counter.getMarkerOVal() !== array.vertical[i].length){
-            counter.resetCounter();
-        }
+    if(array[0][0] == 'x' && array[1][0] == 'x' && array[2][0] == 'x'
+        ||
+       array[0][1] == 'x' && array[1][1] == 'x' && array[2][1] == 'x'
+        ||
+       array[0][2] == 'x' && array[1][2] == 'x' && array[2][2] == 'x'
+    ){
+        xWinner = true;
+        console.log("checkVertical Function was satisfied");
+    }else if(
+        array[0][0] == 'o' && array[1][0] == 'o' && array[2][0] == 'o'
+        ||
+       array[0][1] == 'o' && array[1][1] == 'o' && array[2][1] == 'o'
+        ||
+       array[0][2] == 'o' && array[1][2] == 'o' && array[2][2] == 'o'
+    ){
+        oWinner = true;
+        console.log("checkVertical Function was satisfied");
     }
-};
+
+}
 
 function checkArray(){
-    checkDiagonal(arrayDirections);
-    checkVertical(arrayDirections);
-    checkHorizontal(arrayDirections);
+    checkDiagonal(array);
+    checkHorizontal(array);
+    checkVertical(array);
 };
 
-checkArray();
-
-if(xWinner){
-    console.log("X won the game");
-}else if (oWinner){
-    console.log("O won the game");
+function checkWinner(){   
+    if(xWinner){
+        console.log("X won the game");
+    }else if (oWinner){
+        console.log("O won the game");
+    }
 }
+
+divsBtnDiv.addEventListener('click', (event) => {
+    const target = event.target;
+
+    switch(target.id){
+        case '1':
+            turn();
+            array[0][0] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '2':
+            turn();
+            array[0][1] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '3':
+            turn();
+            array[0][2] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '4':
+            turn();
+            array[1][0] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '5':
+            turn();
+            array[1][1] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '6':
+            turn();
+            array[1][2] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '7':
+            turn();
+            array[2][0] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '8':
+            turn();
+            array[2][1] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+        case '9':
+            turn();
+            array[2][2] = marker;
+            displayArray(array);
+            checkArray();
+            checkWinner();
+        break;
+    }
+})
