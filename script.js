@@ -111,6 +111,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("1").style.pointerEvents = "none";
         break;
         case '2':
             turn();
@@ -118,6 +119,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("2").style.pointerEvents = "none";
         break;
         case '3':
             turn();
@@ -125,6 +127,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("3").style.pointerEvents = "none";
         break;
         case '4':
             turn();
@@ -132,6 +135,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("4").style.pointerEvents = "none";
         break;
         case '5':
             turn();
@@ -139,6 +143,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("5").style.pointerEvents = "none";
         break;
         case '6':
             turn();
@@ -146,6 +151,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("6").style.pointerEvents = "none";
         break;
         case '7':
             turn();
@@ -153,6 +159,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("7").style.pointerEvents = "none";
         break;
         case '8':
             turn();
@@ -160,6 +167,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("8").style.pointerEvents = "none";
         break;
         case '9':
             turn();
@@ -167,6 +175,7 @@ divsBtnDiv.addEventListener('click', (event) => {
             displayArray(array);
             checkArray();
             checkWinner();
+            document.getElementById("9").style.pointerEvents = "none";
         break;
     }
 })

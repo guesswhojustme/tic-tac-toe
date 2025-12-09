@@ -27,3 +27,7 @@ body {
     border-radius: 16px;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
