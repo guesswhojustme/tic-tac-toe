@@ -1,4 +1,6 @@
 const divsBtnDiv = document.querySelector(".grid-container");
+const divContainer = document.getElementById("container");
+const message = document.createElement('span');
 
 const array = [
     ['','',''],
@@ -50,7 +52,7 @@ function checkHorizontal(array){
         ||
        array[1][0] == 'x' && array[1][1] == 'x' && array[1][2] == 'x'
         ||
-       array[1][0] == 'x' && array[2][1] == 'x' && array[2][2] == 'x'
+       array[2][0] == 'x' && array[2][1] == 'x' && array[2][2] == 'x'
     ){
         xWinner = true;
         console.log("checkHorizontal Function was satisfied");
@@ -93,11 +95,36 @@ function checkArray(){
     checkVertical(array);
 };
 
+
 function checkWinner(){   
     if(xWinner){
         console.log("X won the game");
+        divsBtnDiv.style.pointerEvents = "none";
+        message.textContent = "X won the game."
+
+        divContainer.appendChild(message);
     }else if (oWinner){
         console.log("O won the game");
+        divsBtnDiv.style.pointerEvents = "none";
+        message.textContent = "O won the game."
+
+        divContainer.appendChild(message);
+    }else if (turns == 9){
+        console.log("Tie");
+        divsBtnDiv.style.pointerEvents = "none";
+        message.textContent = "Tie."
+
+        divContainer.appendChild(message);
+    }
+
+    if(xWinner || oWinner || turns == 9){
+        const btn = document.createElement('button');
+        btn.textContent = "Restart";
+        btn.addEventListener('click', () => {
+            location.reload();
+        })
+
+        divContainer.appendChild(btn);
     }
 }
 
@@ -112,6 +139,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("1").style.pointerEvents = "none";
+            document.getElementById("1").textContent = marker;
+            document.getElementById("1").style.fontSize = "100px";
+            document.getElementById("1").style.color = "white";
         break;
         case '2':
             turn();
@@ -120,6 +150,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("2").style.pointerEvents = "none";
+            document.getElementById("2").textContent = marker;
+            document.getElementById("2").style.fontSize = "100px";
+            document.getElementById("2").style.color = "white";
         break;
         case '3':
             turn();
@@ -128,6 +161,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("3").style.pointerEvents = "none";
+            document.getElementById("3").textContent = marker;
+            document.getElementById("3").style.fontSize = "100px";
+            document.getElementById("3").style.color = "white";
         break;
         case '4':
             turn();
@@ -136,6 +172,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("4").style.pointerEvents = "none";
+            document.getElementById("4").textContent = marker;
+            document.getElementById("4").style.fontSize = "100px";
+            document.getElementById("4").style.color = "white";
         break;
         case '5':
             turn();
@@ -144,6 +183,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("5").style.pointerEvents = "none";
+            document.getElementById("5").textContent = marker;
+            document.getElementById("5").style.fontSize = "100px";
+            document.getElementById("5").style.color = "white";
         break;
         case '6':
             turn();
@@ -152,6 +194,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("6").style.pointerEvents = "none";
+            document.getElementById("6").textContent = marker;
+            document.getElementById("6").style.fontSize = "100px";
+            document.getElementById("6").style.color = "white";
         break;
         case '7':
             turn();
@@ -160,6 +205,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("7").style.pointerEvents = "none";
+            document.getElementById("7").textContent = marker;
+            document.getElementById("7").style.fontSize = "100px";
+            document.getElementById("7").style.color = "white";
         break;
         case '8':
             turn();
@@ -168,6 +216,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("8").style.pointerEvents = "none";
+            document.getElementById("8").textContent = marker;
+            document.getElementById("8").style.fontSize = "100px";
+            document.getElementById("8").style.color = "white";
         break;
         case '9':
             turn();
@@ -176,6 +227,9 @@ divsBtnDiv.addEventListener('click', (event) => {
             checkArray();
             checkWinner();
             document.getElementById("9").style.pointerEvents = "none";
+            document.getElementById("9").textContent = marker;
+            document.getElementById("9").style.fontSize = "100px";
+            document.getElementById("9").style.color = "white";
         break;
     }
 })
